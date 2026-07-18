@@ -1,0 +1,6 @@
+{
+  "name": "Glacier Wash",
+  "description": "Premium, futuristic car wash booking application with a beautiful glassmorphism design.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
