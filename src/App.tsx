@@ -175,7 +175,7 @@ export default function App() {
     const freeBooking: Booking = {
       id: `gl-free-${Math.random().toString(36).substring(2, 7)}`,
       packageId: 'glacier-hydro',
-      packageName: 'Glacier Hydro (Récompense gratuite)',
+      packageName: 'Traitement Extérieur (Récompense gratuite)',
       packagePrice: 0,
       date: '2026-07-22',
       time: '11:00',

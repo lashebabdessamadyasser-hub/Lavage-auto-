@@ -169,7 +169,7 @@ export default function ActivityView({ bookings, cancelBooking }: ActivityViewPr
                     <div className="flex items-center gap-2 text-xs font-light text-[#a0b4c4]">
                       <Receipt size={14} className="text-[#7dd3fc]" />
                       <span>Total Payé :</span>
-                      <span className="text-[#e0e8f0] font-bold font-mono text-sm">{booking.packagePrice} €</span>
+                      <span className="text-[#e0e8f0] font-bold font-mono text-sm">{booking.packagePrice} DA</span>
                     </div>
 
                     {booking.status === 'upcoming' && (

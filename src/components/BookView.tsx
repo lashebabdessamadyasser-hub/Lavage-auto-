@@ -447,7 +447,7 @@ export default function BookView({
                           <div>
                             <div className="flex justify-between items-start">
                               <h4 className="text-lg font-bold text-[#e0e8f0]">{pkg.name}</h4>
-                              <span className="text-[#7dd3fc] font-bold text-xl">{pkg.price} €</span>
+                              <span className="text-[#7dd3fc] font-bold text-xl">{pkg.price} DA</span>
                             </div>
                             <p className="text-xs text-[#a0b4c4] mt-1 line-clamp-2 font-light leading-relaxed">{pkg.description}</p>
                           </div>
@@ -584,7 +584,7 @@ export default function BookView({
                             <p className="text-xs text-[#a0b4c4] font-light mt-0.5 leading-relaxed">{addon.description}</p>
                           </div>
                         </div>
-                        <span className="text-[#7dd3fc] font-bold font-mono text-sm whitespace-nowrap">+{addon.price} €</span>
+                        <span className="text-[#7dd3fc] font-bold font-mono text-sm whitespace-nowrap">+{addon.price} DA</span>
                       </div>
                     );
                   })}
@@ -637,7 +637,7 @@ export default function BookView({
                         {ADD_ONS.filter(a => selectedAddOns.includes(a.id)).map(a => (
                           <div key={a.id} className="flex justify-between text-xs">
                             <span className="text-[#e0e8f0] font-light flex items-center gap-1">✓ {a.name}</span>
-                            <span className="text-[#7dd3fc] font-mono">+{a.price} €</span>
+                            <span className="text-[#7dd3fc] font-mono">+{a.price} DA</span>
                           </div>
                         ))}
                       </div>
@@ -734,22 +734,22 @@ export default function BookView({
               </div>
               <div className="flex justify-between items-center">
                 <span className="font-light">Prix de Base:</span>
-                <span className="text-[#e0e8f0] font-mono font-bold">{selectedPkg ? `${basePrice} €` : '0 €'}</span>
+                <span className="text-[#e0e8f0] font-mono font-bold">{selectedPkg ? `${basePrice} DA` : '0 DA'}</span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="font-light">Options Premium:</span>
-                <span className="text-[#e0e8f0] font-mono font-bold">+{addonsTotal} €</span>
+                <span className="text-[#e0e8f0] font-mono font-bold">+{addonsTotal} DA</span>
               </div>
               
               <div className="border-t border-[#7dd3fc]/10 pt-3 flex justify-between items-center text-sm font-semibold">
                 <span className="text-[#e0e8f0]">Sous-total:</span>
-                <span className="text-[#e0e8f0] font-mono font-bold">{subtotal} €</span>
+                <span className="text-[#e0e8f0] font-mono font-bold">{subtotal} DA</span>
               </div>
 
               {appliedDiscount && (
                 <div className="flex justify-between items-center text-green-400 font-semibold bg-green-500/5 p-2 rounded border border-green-500/10">
                   <span>Remise ({appliedDiscount.code}):</span>
-                  <span className="font-mono font-bold">-{discountAmount} € (-{appliedDiscount.percent}%)</span>
+                  <span className="font-mono font-bold">-{discountAmount} DA (-{appliedDiscount.percent}%)</span>
                 </div>
               )}
 
@@ -758,7 +758,7 @@ export default function BookView({
                   <span className="text-xs font-semibold uppercase tracking-wider block">Total à Payer:</span>
                   <span className="text-[10px] text-[#a0b4c4] font-light">Taxes et frais inclus</span>
                 </div>
-                <span className="text-2xl font-bold font-mono text-[#7dd3fc] tracking-tight">{total} €</span>
+                <span className="text-2xl font-bold font-mono text-[#7dd3fc] tracking-tight">{total} DA</span>
               </div>
             </div>
 

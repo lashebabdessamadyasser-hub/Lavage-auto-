@@ -3,8 +3,8 @@ import { WashPackage, Vehicle, Booking, UserProfile, Promotion } from './types';
 export const INITIAL_PACKAGES: WashPackage[] = [
   {
     id: 'glacier-hydro',
-    name: 'Glacier Hydro',
-    price: 25,
+    name: 'Traitement Extérieur',
+    price: 500,
     duration: 30,
     description: 'Parfait pour un entretien hebdomadaire rapide. Rinçage précis à haute pression et mousse active protectrice.',
     features: [
@@ -17,47 +17,43 @@ export const INITIAL_PACKAGES: WashPackage[] = [
   },
   {
     id: 'glacier-guard',
-    name: 'Glacier Guard',
-    price: 45,
+    name: 'Traitement Intérieur',
+    price: 500,
     duration: 45,
-    description: 'Protection et brillance supérieures. Applique un bouclier hydrophobe avancé sur le vernis de votre voiture.',
+    description: 'Nettoyage en profondeur de l\'habitacle pour un environnement sain et rafraîchi.',
     features: [
-      'Tout ce qui est inclus dans Glacier Hydro',
-      'Scellant pour vitres hydrophobe avancé',
-      'Application de cire de polissage tri-couleurs',
-      'Nettoyage et protection des pneus',
-      'Inhibiteur de rouille sous châssis'
-    ],
-    tag: 'Meilleur Rapport Qualité/Prix',
-    image: 'https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&q=80&w=600'
-  },
-  {
-    id: 'ice-detail-pro',
-    name: 'Ice Detail Pro',
-    price: 85,
-    duration: 75,
-    description: 'Un lavage complet intérieur et extérieur, pour une expérience de conduite fraîche et saine.',
-    features: [
-      'Tout ce qui est inclus dans Glacier Guard',
       'Aspiration profonde des tapis et sièges',
       'Désinfection à la vapeur et désodorisation',
       'Soin des cuirs / Shampoing des tissus',
       'Nettoyage des conduits d\'air et aérations'
     ],
+    image: 'https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&q=80&w=600'
+  },
+  {
+    id: 'ice-detail-pro',
+    name: 'Traitement Général',
+    price: 1000,
+    duration: 75,
+    description: 'Un lavage complet intérieur et extérieur, pour une expérience de conduite fraîche et saine.',
+    features: [
+      'Lavage extérieur complet',
+      'Nettoyage intérieur intégral',
+      'Protection des plastiques',
+      'Parfum d\'ambiance premium'
+    ],
     image: 'https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&q=80&w=600'
   },
   {
     id: 'thermal-ultimate',
-    name: 'Thermal Ultimate',
-    price: 140,
-    duration: 120,
-    description: 'Le summum du rajeunissement automobile. Technologie thermique avancée et polissage céramique de pointe.',
+    name: 'Général avec Lifting',
+    price: 15000,
+    duration: 180,
+    description: 'Le summum du rajeunissement automobile avec polissage et protection longue durée.',
     features: [
-      'Tout ce qui est inclus dans Ice Detail Pro',
-      'Traitement thermique par infrarouge',
-      'Bouclier céramique nanotech pour vitres et carrosserie',
-      'Nettoyage et dégraissage du compartiment moteur',
-      'Polissage et lustrage haute brillance à la machine'
+      'Tout ce qui est inclus dans Traitement Général',
+      'Polissage machine multi-étapes',
+      'Traitement de carrosserie haute brillance',
+      'Protection céramique longue durée'
     ],
     tag: 'Choix Premium',
     image: 'https://images.unsplash.com/photo-1601362840469-51e4d8d59085?auto=format&fit=crop&q=80&w=600'

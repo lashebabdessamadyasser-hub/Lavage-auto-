@@ -105,7 +105,7 @@ export default function ProfileView({
             <div className="bg-[#141c2e]/60 border border-[#7dd3fc]/5 p-4 rounded-xl text-center space-y-1">
               <span className="text-[10px] uppercase font-bold tracking-wider text-[#a0b4c4]">Votre Solde</span>
               <p className="text-4xl font-extrabold font-mono text-[#7dd3fc]">{user.loyaltyPoints}</p>
-              <span className="text-[10px] text-[#a0b4c4]/60 font-light block">1 EUR dépensé = 1 point gagné</span>
+              <span className="text-[10px] text-[#a0b4c4]/60 font-light block">1 DA dépensé = 1 point gagné</span>
             </div>
 
             {/* Progress Bar to Free Wash */}
