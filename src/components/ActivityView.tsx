@@ -32,24 +32,31 @@ export default function ActivityView({ bookings, cancelBooking }: ActivityViewPr
       case 'upcoming':
         return (
           <span className="flex items-center gap-1 bg-[#7dd3fc]/10 text-[#7dd3fc] border border-[#7dd3fc]/20 text-[10px] px-2.5 py-0.5 rounded-full font-semibold uppercase tracking-wider">
-            ● Scheduled
+            ● Planifié
           </span>
         );
       case 'completed':
         return (
           <span className="flex items-center gap-1 bg-green-500/10 text-green-400 border border-green-500/20 text-[10px] px-2.5 py-0.5 rounded-full font-semibold uppercase tracking-wider">
-            ✓ Finished
+            ✓ Terminé
           </span>
         );
       case 'cancelled':
         return (
           <span className="flex items-center gap-1 bg-red-500/10 text-red-400 border border-red-500/15 text-[10px] px-2.5 py-0.5 rounded-full font-semibold uppercase tracking-wider">
-            ✕ Cancelled
+            ✕ Annulé
           </span>
         );
       default:
         return null;
     }
+  };
+
+  const filterLabels: Record<FilterStatus, string> = {
+    all: 'Tous',
+    upcoming: 'À venir',
+    completed: 'Terminés',
+    cancelled: 'Annulés'
   };
 
   return (
@@ -59,9 +66,9 @@ export default function ActivityView({ bookings, cancelBooking }: ActivityViewPr
         <div>
           <h2 className="font-sans text-3xl font-bold text-[#e0e8f0] flex items-center justify-center md:justify-start gap-2">
             <History className="text-[#7dd3fc]" />
-            <span>Your Treatment History</span>
+            <span>Votre Historique de Traitement</span>
           </h2>
-          <p className="text-[#a0b4c4] text-sm mt-2">Track your past glacier cleaning and upcoming scheduled packages</p>
+          <p className="text-[#a0b4c4] text-sm mt-2">Suivez vos nettoyages Glacier passés et vos rendez-vous planifiés</p>
         </div>
 
         {/* Filter Chips */}
@@ -77,7 +84,7 @@ export default function ActivityView({ bookings, cancelBooking }: ActivityViewPr
                   : 'bg-[#141c2e]/60 text-[#a0b4c4] border border-transparent hover:border-[#7dd3fc]/20'
               }`}
             >
-              {f}
+              {filterLabels[f]}
             </button>
           ))}
         </div>
@@ -96,8 +103,8 @@ export default function ActivityView({ bookings, cancelBooking }: ActivityViewPr
               <div className="w-12 h-12 rounded-full bg-[#141c2e] border border-[#7dd3fc]/20 flex items-center justify-center mx-auto mb-4">
                 <AlertCircle className="text-[#a0b4c4]" size={20} />
               </div>
-              <h3 className="text-[#e0e8f0] font-bold text-base uppercase tracking-wider">No Appointments Found</h3>
-              <p className="text-[#a0b4c4] text-xs font-light mt-1 max-w-sm mx-auto">There are currently no wash treatments in this category. Navigate to the 'Book' tab to schedule a service.</p>
+              <h3 className="text-[#e0e8f0] font-bold text-base uppercase tracking-wider">Aucun rendez-vous trouvé</h3>
+              <p className="text-[#a0b4c4] text-xs font-light mt-1 max-w-sm mx-auto">Il n'y a actuellement aucun traitement dans cette catégorie. Allez dans l'onglet 'Réserver' pour planifier un service.</p>
             </motion.div>
           ) : (
             filteredBookings.map((booking) => (
@@ -120,7 +127,7 @@ export default function ActivityView({ bookings, cancelBooking }: ActivityViewPr
                       </div>
                       <div>
                         <h3 className="font-sans font-bold text-lg text-[#e0e8f0]">{booking.packageName}</h3>
-                        <p className="text-[10px] text-[#a0b4c4] font-mono mt-0.5">Booking ID: #{booking.id.toUpperCase()}</p>
+                        <p className="text-[10px] text-[#a0b4c4] font-mono mt-0.5">ID Réservation: #{booking.id.toUpperCase()}</p>
                       </div>
                     </div>
                     
@@ -141,7 +148,7 @@ export default function ActivityView({ bookings, cancelBooking }: ActivityViewPr
                     <div className="flex items-center gap-2 bg-[#141c2e]/30 p-2.5 rounded-lg border border-[#7dd3fc]/5">
                       <Clock size={14} className="text-[#7dd3fc]" />
                       <div>
-                        <p className="text-[10px] text-[#a0b4c4] uppercase tracking-wider font-light">Appt Time</p>
+                        <p className="text-[10px] text-[#a0b4c4] uppercase tracking-wider font-light">Heure RDV</p>
                         <p className="text-[#e0e8f0] font-medium mt-0.5">{booking.time}</p>
                       </div>
                     </div>
@@ -149,7 +156,7 @@ export default function ActivityView({ bookings, cancelBooking }: ActivityViewPr
                     <div className="flex items-center gap-2 bg-[#141c2e]/30 p-2.5 rounded-lg border border-[#7dd3fc]/5">
                       <Car size={14} className="text-[#7dd3fc]" />
                       <div>
-                        <p className="text-[10px] text-[#a0b4c4] uppercase tracking-wider font-light">Vehicle</p>
+                        <p className="text-[10px] text-[#a0b4c4] uppercase tracking-wider font-light">Véhicule</p>
                         <p className="text-[#e0e8f0] font-medium mt-0.5 uppercase">
                           {booking.vehicle.make} {booking.vehicle.model}
                         </p>
@@ -161,7 +168,7 @@ export default function ActivityView({ bookings, cancelBooking }: ActivityViewPr
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-3 border-t border-[#7dd3fc]/5">
                     <div className="flex items-center gap-2 text-xs font-light text-[#a0b4c4]">
                       <Receipt size={14} className="text-[#7dd3fc]" />
-                      <span>Total Paid:</span>
+                      <span>Total Payé :</span>
                       <span className="text-[#e0e8f0] font-bold font-mono text-sm">{booking.packagePrice} €</span>
                     </div>
 
@@ -170,21 +177,21 @@ export default function ActivityView({ bookings, cancelBooking }: ActivityViewPr
                         {cancellingId === booking.id ? (
                           <div className="flex items-center gap-3">
                             <span className="text-xs text-red-400 font-semibold flex items-center gap-1 animate-pulse">
-                              <AlertCircle size={12} /> Confirm cancellation?
+                              <AlertCircle size={12} /> Confirmer l'annulation ?
                             </span>
                             <button
                               id={`btn-cancel-yes-${booking.id}`}
                               onClick={() => handleCancelConfirm(booking.id)}
                               className="px-3 py-1.5 bg-red-500/20 hover:bg-red-500/30 border border-red-500/40 rounded-full text-red-400 text-xs font-bold cursor-pointer"
                             >
-                              Yes, Cancel
+                              Oui, Annuler
                             </button>
                             <button
                               id={`btn-cancel-no-${booking.id}`}
                               onClick={() => setCancellingId(null)}
                               className="px-3 py-1.5 bg-[#141c2e] hover:bg-[#141c2e]/80 border border-[#7dd3fc]/10 rounded-full text-[#a0b4c4] text-xs font-medium cursor-pointer"
                             >
-                              Keep
+                              Garder
                             </button>
                           </div>
                         ) : (
@@ -193,7 +200,7 @@ export default function ActivityView({ bookings, cancelBooking }: ActivityViewPr
                             onClick={() => setCancellingId(booking.id)}
                             className="flex items-center gap-1 py-1.5 px-4 rounded-full text-xs font-semibold text-red-400 hover:bg-red-500/10 border border-transparent hover:border-red-500/25 transition-all cursor-pointer"
                           >
-                            <Trash2 size={12} /> Cancel Wash
+                            <Trash2 size={12} /> Annuler le Lavage
                           </button>
                         )}
                       </div>
@@ -201,13 +208,13 @@ export default function ActivityView({ bookings, cancelBooking }: ActivityViewPr
 
                     {booking.status === 'completed' && (
                       <span className="text-green-400 text-xs font-semibold flex items-center gap-1 select-none">
-                        <CheckCircle2 size={13} /> Highly polished vehicle dispatched!
+                        <CheckCircle2 size={13} /> Véhicule parfaitement lustré expédié !
                       </span>
                     )}
 
                     {booking.status === 'cancelled' && (
                       <span className="text-red-400/60 text-xs font-medium flex items-center gap-1 select-none">
-                        <XCircle size={13} /> Wash appointment was voided
+                        <XCircle size={13} /> Le rendez-vous a été annulé
                       </span>
                     )}
                   </div>

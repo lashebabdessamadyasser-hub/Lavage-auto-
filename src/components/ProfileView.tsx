@@ -42,7 +42,7 @@ export default function ProfileView({
     setFormError('');
 
     if (!make.trim() || !model.trim() || !plate.trim()) {
-      setFormError('Please fill out all vehicle specifications.');
+      setFormError('Veuillez remplir toutes les spécifications du véhicule.');
       return;
     }
 
@@ -89,7 +89,7 @@ export default function ProfileView({
             )}
           </div>
           <p className="text-sm text-[#a0b4c4] font-light">{user.email}</p>
-          <p className="text-xs text-[#a0b4c4]/60">VIP Elite member since {user.memberSince}</p>
+          <p className="text-xs text-[#a0b4c4]/60">Membre VIP Elite depuis {user.memberSince}</p>
         </div>
       </div>
 
@@ -98,20 +98,20 @@ export default function ProfileView({
         <div className="lg:col-span-1 space-y-6">
           <div className="glass-panel p-6 rounded-2xl space-y-4">
             <h3 className="text-xs font-bold text-[#e0e8f0] uppercase tracking-widest flex items-center gap-2">
-              <Award size={16} className="text-[#7dd3fc]" /> Glacier Loyalty Club
+              <Award size={16} className="text-[#7dd3fc]" /> Club de Fidélité Glacier
             </h3>
 
             {/* Points balance */}
             <div className="bg-[#141c2e]/60 border border-[#7dd3fc]/5 p-4 rounded-xl text-center space-y-1">
-              <span className="text-[10px] uppercase font-bold tracking-wider text-[#a0b4c4]">Your Balance</span>
+              <span className="text-[10px] uppercase font-bold tracking-wider text-[#a0b4c4]">Votre Solde</span>
               <p className="text-4xl font-extrabold font-mono text-[#7dd3fc]">{user.loyaltyPoints}</p>
-              <span className="text-[10px] text-[#a0b4c4]/60 font-light block">1 EUR spent = 1 point earned</span>
+              <span className="text-[10px] text-[#a0b4c4]/60 font-light block">1 EUR dépensé = 1 point gagné</span>
             </div>
 
             {/* Progress Bar to Free Wash */}
             <div className="space-y-2">
               <div className="flex justify-between text-xs font-semibold">
-                <span className="text-[#a0b4c4] font-light">Free Wash Progress:</span>
+                <span className="text-[#a0b4c4] font-light">Progrès Lavage Gratuit :</span>
                 <span className="text-[#7dd3fc] font-mono">{user.loyaltyPoints} / {REWARD_THRESHOLD} pts</span>
               </div>
               <div className="w-full h-2.5 bg-[#0a0e1a] rounded-full overflow-hidden border border-[#7dd3fc]/10 p-0.5">
@@ -123,7 +123,7 @@ export default function ProfileView({
                 />
               </div>
               <p className="text-[10px] text-[#a0b4c4]/60 font-light leading-relaxed">
-                Reach {REWARD_THRESHOLD} points to unlock a complimentary premium Glacier Hydro wash!
+                Atteignez {REWARD_THRESHOLD} points pour débloquer un lavage Glacier Hydro gratuit !
               </p>
             </div>
 
@@ -134,12 +134,12 @@ export default function ProfileView({
                 onClick={redeemFreeWash}
                 className="w-full py-2.5 rounded-full bg-gradient-to-r from-amber-500/20 to-amber-600/30 border border-amber-500/50 hover:from-amber-500/30 hover:to-amber-600/40 text-amber-300 font-sans font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_0_15px_rgba(245,158,11,0.15)] active:scale-95 cursor-pointer flex items-center justify-center gap-1.5"
               >
-                <Sparkles size={12} /> Claim Complimentary Wash!
+                <Sparkles size={12} /> Réclamer Mon Lavage Gratuit !
               </button>
             ) : (
               <div className="w-full py-2 px-3 bg-[#141c2e]/40 border border-[#7dd3fc]/5 rounded-xl text-[10px] text-[#a0b4c4] font-light flex gap-2 items-start">
                 <Info size={12} className="text-[#7dd3fc] flex-shrink-0 mt-0.5" />
-                <span>Earn {REWARD_THRESHOLD - user.loyaltyPoints} more points to claim a free wash reward.</span>
+                <span>Gagnez encore {REWARD_THRESHOLD - user.loyaltyPoints} points pour obtenir un lavage gratuit.</span>
               </div>
             )}
           </div>
@@ -150,7 +150,7 @@ export default function ProfileView({
           <div className="glass-panel p-6 rounded-2xl space-y-6">
             <div className="flex justify-between items-center">
               <h3 className="text-xs font-bold text-[#e0e8f0] uppercase tracking-widest flex items-center gap-2">
-                <Car size={16} className="text-[#7dd3fc]" /> My Garage
+                <Car size={16} className="text-[#7dd3fc]" /> Mon Garage
               </h3>
               {!isAdding && (
                 <button
@@ -158,7 +158,7 @@ export default function ProfileView({
                   onClick={() => setIsAdding(true)}
                   className="text-xs bg-[#7dd3fc]/15 hover:bg-[#7dd3fc]/25 border border-[#7dd3fc]/20 text-[#7dd3fc] px-3 py-1.5 rounded-full font-semibold transition-all cursor-pointer flex items-center gap-1"
                 >
-                  <Plus size={14} /> Add Vehicle
+                  <Plus size={14} /> Ajouter
                 </button>
               )}
             </div>
@@ -175,7 +175,7 @@ export default function ProfileView({
                   <form onSubmit={handleAddVehicle} className="bg-[#141c2e]/30 border border-[#7dd3fc]/10 p-4 rounded-xl space-y-4">
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-[10px] font-bold text-[#a0b4c4] uppercase tracking-wider mb-1">Make</label>
+                        <label className="block text-[10px] font-bold text-[#a0b4c4] uppercase tracking-wider mb-1">Marque</label>
                         <input 
                           type="text" 
                           placeholder="Porsche" 
@@ -185,7 +185,7 @@ export default function ProfileView({
                         />
                       </div>
                       <div>
-                        <label className="block text-[10px] font-bold text-[#a0b4c4] uppercase tracking-wider mb-1">Model</label>
+                        <label className="block text-[10px] font-bold text-[#a0b4c4] uppercase tracking-wider mb-1">Modèle</label>
                         <input 
                           type="text" 
                           placeholder="Taycan 4S" 
@@ -198,7 +198,7 @@ export default function ProfileView({
 
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-[10px] font-bold text-[#a0b4c4] uppercase tracking-wider mb-1">License Plate</label>
+                        <label className="block text-[10px] font-bold text-[#a0b4c4] uppercase tracking-wider mb-1">Plaque d'immatriculation</label>
                         <input 
                           type="text" 
                           placeholder="EL-456-TR" 
@@ -208,16 +208,16 @@ export default function ProfileView({
                         />
                       </div>
                       <div>
-                        <label className="block text-[10px] font-bold text-[#a0b4c4] uppercase tracking-wider mb-1">Body Style</label>
+                        <label className="block text-[10px] font-bold text-[#a0b4c4] uppercase tracking-wider mb-1">Type</label>
                         <select 
                           value={type}
                           onChange={(e) => setType(e.target.value as VehicleType)}
                           className="w-full bg-[#0a0e1a]/80 border border-[#7dd3fc]/20 focus:border-[#7dd3fc] rounded-lg px-2 py-1.5 text-xs text-[#e0e8f0] outline-none"
                         >
-                          <option value="sedan">Sedan</option>
+                          <option value="sedan">Berline</option>
                           <option value="suv">SUV</option>
-                          <option value="truck">Truck</option>
-                          <option value="coupe">Coupe</option>
+                          <option value="truck">Utilitaire</option>
+                          <option value="coupe">Coupé</option>
                         </select>
                       </div>
                     </div>
@@ -230,13 +230,13 @@ export default function ProfileView({
                         onClick={() => setIsAdding(false)}
                         className="px-3 py-1.5 text-[10px] font-semibold text-[#a0b4c4] hover:text-white cursor-pointer"
                       >
-                        Cancel
+                        Annuler
                       </button>
                       <button 
                         type="submit"
                         className="px-4 py-1.5 text-[10px] font-bold bg-[#7dd3fc]/15 text-[#7dd3fc] border border-[#7dd3fc]/30 hover:bg-[#7dd3fc]/25 rounded-full cursor-pointer transition-all"
                       >
-                        Register
+                        Enregistrer
                       </button>
                     </div>
                   </form>
@@ -274,14 +274,14 @@ export default function ProfileView({
                           onClick={() => handleDeleteConfirm(v.id)}
                           className="px-2.5 py-1 bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 rounded-lg text-red-400 text-[10px] font-bold cursor-pointer"
                         >
-                          Delete
+                          Supprimer
                         </button>
                         <button
                           id={`btn-del-veh-no-${v.id}`}
                           onClick={() => setDeletingId(null)}
                           className="px-2.5 py-1 bg-[#141c2e] hover:bg-[#141c2e]/80 border border-[#7dd3fc]/10 rounded-lg text-[#a0b4c4] text-[10px] font-semibold cursor-pointer"
                         >
-                          Keep
+                          Garder
                         </button>
                       </div>
                     ) : (
@@ -289,7 +289,7 @@ export default function ProfileView({
                         id={`btn-del-veh-trigger-${v.id}`}
                         onClick={() => setDeletingId(v.id)}
                         className="p-2 text-[#a0b4c4] hover:text-red-400 hover:bg-red-500/10 rounded-full transition-all cursor-pointer"
-                        title="Remove vehicle"
+                        title="Retirer le véhicule"
                       >
                         <Trash2 size={14} />
                       </button>

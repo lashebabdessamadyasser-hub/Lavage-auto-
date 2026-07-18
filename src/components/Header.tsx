@@ -10,10 +10,10 @@ interface HeaderProps {
 
 export default function Header({ currentTab, setCurrentTab, user }: HeaderProps) {
   const navItems = [
-    { id: 'home', label: 'Home', icon: Home },
-    { id: 'book', label: 'Book', icon: Car },
-    { id: 'activity', label: 'Activity', icon: History },
-    { id: 'profile', label: 'Profile', icon: User },
+    { id: 'home', label: 'Accueil', icon: Home },
+    { id: 'book', label: 'Réserver', icon: Car },
+    { id: 'activity', label: 'Activité', icon: History },
+    { id: 'profile', label: 'Profil', icon: User },
   ];
 
   return (

@@ -6,12 +6,12 @@ export const INITIAL_PACKAGES: WashPackage[] = [
     name: 'Glacier Hydro',
     price: 25,
     duration: 30,
-    description: 'Perfect for quick weekly maintenance. Precise high-pressure rinse and protective active snow foam.',
+    description: 'Parfait pour un entretien hebdomadaire rapide. Rinçage précis à haute pression et mousse active protectrice.',
     features: [
-      'High-pressure active foam wash',
-      'Underbody spray rinse',
-      'Dual-action wheel cleaning',
-      'Spot-free reverse osmosis dry'
+      'Lavage à la mousse active haute pression',
+      'Rinçage du châssis',
+      'Nettoyage des jantes double action',
+      'Séchage sans traces par osmose inverse'
     ],
     image: 'https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&q=80&w=600'
   },
@@ -20,15 +20,15 @@ export const INITIAL_PACKAGES: WashPackage[] = [
     name: 'Glacier Guard',
     price: 45,
     duration: 45,
-    description: 'Superior protection and shine. Imparts an advanced hydrophobic shield on your car\'s clear coat.',
+    description: 'Protection et brillance supérieures. Applique un bouclier hydrophobe avancé sur le vernis de votre voiture.',
     features: [
-      'Everything in Glacier Hydro',
-      'Advanced hydrophobic glass sealant',
-      'Tri-color polish wax application',
-      'Tire cleaning and tire dress barrier',
-      'Rust-shield undercarriage inhibitor'
+      'Tout ce qui est inclus dans Glacier Hydro',
+      'Scellant pour vitres hydrophobe avancé',
+      'Application de cire de polissage tri-couleurs',
+      'Nettoyage et protection des pneus',
+      'Inhibiteur de rouille sous châssis'
     ],
-    tag: 'Best Value',
+    tag: 'Meilleur Rapport Qualité/Prix',
     image: 'https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&q=80&w=600'
   },
   {
@@ -36,13 +36,13 @@ export const INITIAL_PACKAGES: WashPackage[] = [
     name: 'Ice Detail Pro',
     price: 85,
     duration: 75,
-    description: 'An exhaustive deep wash inside and out, keeping your driving experience fresh and sanitary.',
+    description: 'Un lavage complet intérieur et extérieur, pour une expérience de conduite fraîche et saine.',
     features: [
-      'Everything in Glacier Guard',
-      'Deep interior carpet & seat vacuuming',
-      'Interior steam disinfection & deodorizing',
-      'Leather conditioning / upholstery shampoo',
-      'Air duct & vents cleaning'
+      'Tout ce qui est inclus dans Glacier Guard',
+      'Aspiration profonde des tapis et sièges',
+      'Désinfection à la vapeur et désodorisation',
+      'Soin des cuirs / Shampoing des tissus',
+      'Nettoyage des conduits d\'air et aérations'
     ],
     image: 'https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&q=80&w=600'
   },
@@ -51,15 +51,15 @@ export const INITIAL_PACKAGES: WashPackage[] = [
     name: 'Thermal Ultimate',
     price: 140,
     duration: 120,
-    description: 'The pinnacle of automotive rejuvenation. Features advanced thermal tech and state-of-the-art ceramic polish.',
+    description: 'Le summum du rajeunissement automobile. Technologie thermique avancée et polissage céramique de pointe.',
     features: [
-      'Everything in Ice Detail Pro',
-      'Infrared thermal treatment cure',
-      'Nanotech glass & paint ceramic shield',
-      'Engine bay wash and deep-degreasing',
-      'High-gloss machine swirl buff & polish'
+      'Tout ce qui est inclus dans Ice Detail Pro',
+      'Traitement thermique par infrarouge',
+      'Bouclier céramique nanotech pour vitres et carrosserie',
+      'Nettoyage et dégraissage du compartiment moteur',
+      'Polissage et lustrage haute brillance à la machine'
     ],
-    tag: 'Premium Choice',
+    tag: 'Choix Premium',
     image: 'https://images.unsplash.com/photo-1601362840469-51e4d8d59085?auto=format&fit=crop&q=80&w=600'
   }
 ];
@@ -84,21 +84,21 @@ export const INITIAL_VEHICLES: Vehicle[] = [
 export const INITIAL_PROMOTIONS: Promotion[] = [
   {
     id: 'promo-detail',
-    title: 'Premium Detail Package',
-    subtitle: 'Exclusive Winter Protection',
+    title: 'Forfait Detail Premium',
+    subtitle: 'Protection Hivernale Exclusive',
     promoCode: 'GLACIER_PREMIUM_20',
     discountPercent: 20,
-    description: 'Experience our most comprehensive detail package yet. Deep high-pressure active snow foam, wheel-ceramic barrier coating, and pristine interior steam cleaning.',
+    description: 'Découvrez notre forfait d\'entretien le plus complet à ce jour. Mousse de neige active haute pression, revêtement barrière céramique pour jantes et nettoyage à la vapeur de l\'habitacle.',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBmzHod5bNbZ-webu2cBp0mvITdvbveBhroDThMDWkx2OJAOHWdncAoj9eQmXwkh7Wen5DenLQ5vjxwpcCG_WEo-PYhBRVle93WHrDAML6uaASy-SDuC1vgNJU_WX2gsXlwf4OqYAP5DRj0vH3m-r5dDPQ68T3NyawalcXmH8SxugdGj7eu4Kzpw9fR-UvrFxdKBBRytA6JJyUDEKH7mnjbIDmBYOkqic_ukVRr_XfwTJih3pRt0ssjDg',
     claimed: false
   },
   {
     id: 'promo-midweek',
-    title: 'Midweek Glow Rush',
-    subtitle: 'Tuesday & Wednesday Special',
+    title: 'Éclat de Semaine',
+    subtitle: 'Spécial Mardi & Mercredi',
     promoCode: 'GLOW_RUSH_15',
     discountPercent: 15,
-    description: 'Beat the weekend rush! Book any wash on Tuesday or Wednesday and save an extra 15% with complete undercarriage rinse included.',
+    description: 'Évitez l\'affluence du week-end ! Réservez n\'importe quel lavage le mardi ou le mercredi et économisez 15% supplémentaires avec rinçage du châssis inclus.',
     image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=600',
     claimed: false
   }

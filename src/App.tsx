@@ -54,9 +54,9 @@ export default function App() {
   const [cmsData, setCmsData] = useState(() => {
     const saved = localStorage.getItem('glacier_cms');
     return saved ? JSON.parse(saved) : {
-      heroTitle: "THE GLACIER EXPERIENCE",
-      heroSubtitle: "Futuristic precision cleaning and high-gloss ceramic coatings for performance vehicles.",
-      promoText: "Experience our most comprehensive detail package yet. Deep high-pressure active snow foam, wheel-ceramic barrier coating, and pristine interior steam cleaning."
+      heroTitle: "L'EXPÉRIENCE GLACIER",
+      heroSubtitle: "Nettoyage de précision futuriste et revêtements céramiques haute brillance pour véhicules de performance.",
+      promoText: "Découvrez notre forfait d'entretien le plus complet à ce jour. Mousse de neige active haute pression, revêtement barrière céramique pour jantes et nettoyage à la vapeur de l'habitacle."
     };
   });
 
@@ -106,7 +106,7 @@ export default function App() {
     );
     const promo = promotions.find(p => p.id === id);
     if (promo) {
-      addToast(`Promo Code ${promo.promoCode} applied to your next wash!`, 'success');
+      addToast(`Code Promo ${promo.promoCode} appliqué à votre prochain lavage !`, 'success');
     }
   };
 
@@ -116,7 +116,7 @@ export default function App() {
       id: `car-${Date.now()}`
     };
     setVehicles((prev) => [...prev, created]);
-    addToast(`${created.make} ${created.model} successfully added to your garage!`, 'success');
+    addToast(`${created.make} ${created.model} ajouté avec succès à votre garage !`, 'success');
     return created;
   };
 
@@ -124,7 +124,7 @@ export default function App() {
     const toDelete = vehicles.find(v => v.id === id);
     setVehicles((prev) => prev.filter((v) => v.id !== id));
     if (toDelete) {
-      addToast(`${toDelete.make} ${toDelete.model} removed from garage.`, 'info');
+      addToast(`${toDelete.make} ${toDelete.model} retiré du garage.`, 'info');
     }
   };
 
@@ -144,7 +144,7 @@ export default function App() {
       loyaltyPoints: prev.loyaltyPoints + Math.round(booking.packagePrice)
     }));
 
-    addToast(`Successfully booked ${booking.packageName}! Check details in Activity.`, 'success');
+    addToast(`Réservation réussie pour ${booking.packageName} ! Détails dans l\'onglet Activité.`, 'success');
     
     // Redirect to Activity tab
     setCurrentTab('activity');
@@ -156,7 +156,7 @@ export default function App() {
         b.id === id ? { ...b, status: 'cancelled' } : b
       )
     );
-    addToast('Your appointment has been successfully cancelled.', 'info');
+    addToast('Votre rendez-vous a été annulé avec succès.', 'info');
   };
 
   const handleRedeemFreeWash = () => {
@@ -175,7 +175,7 @@ export default function App() {
     const freeBooking: Booking = {
       id: `gl-free-${Math.random().toString(36).substring(2, 7)}`,
       packageId: 'glacier-hydro',
-      packageName: 'Glacier Hydro (Free Reward)',
+      packageName: 'Glacier Hydro (Récompense gratuite)',
       packagePrice: 0,
       date: '2026-07-22',
       time: '11:00',
@@ -185,13 +185,13 @@ export default function App() {
     };
 
     setBookings((prev) => [freeBooking, ...prev]);
-    addToast('Complimentary wash reward claimed! Check details in Activity.', 'success');
+    addToast('Lavage gratuit réclamé ! Détails dans l\'onglet Activité.', 'success');
     setCurrentTab('activity');
   };
 
   const handleUpdateCmsData = (newData: Partial<typeof cmsData>) => {
     setCmsData((prev) => ({ ...prev, ...newData }));
-    addToast('Application CMS contents updated successfully.', 'success');
+    addToast('Contenu CMS de l\'application mis à jour avec succès.', 'success');
   };
 
   const renderActiveView = () => {

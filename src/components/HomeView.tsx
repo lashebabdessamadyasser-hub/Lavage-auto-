@@ -74,10 +74,10 @@ export default function HomeView({
               setIsEditingCms(!isEditingCms);
             }}
             className="glass-panel text-[#7dd3fc] hover:bg-[#7dd3fc]/10 p-2.5 rounded-full flex items-center justify-center cursor-pointer transition-all active:scale-95 border border-[#7dd3fc]/30 hover:border-[#7dd3fc]/60"
-            title="Edit Screen CMS Text"
+            title="Modifier le texte CMS"
           >
             <Edit2 size={16} />
-            <span className="text-xs font-semibold uppercase tracking-wider ml-1.5 pr-1 hidden sm:inline">CMS Panel</span>
+            <span className="text-xs font-semibold uppercase tracking-wider ml-1.5 pr-1 hidden sm:inline">Panneau CMS</span>
           </button>
         </div>
 
@@ -113,7 +113,7 @@ export default function HomeView({
               onClick={onBookClick}
               className="glass-elevated text-[#7dd3fc] font-sans font-semibold py-4 px-10 rounded-full text-lg hover:bg-[#7dd3fc]/20 transition-all duration-300 hover:shadow-[0_0_40px_rgba(125,211,252,0.2)] border border-[#7dd3fc]/30 flex items-center space-x-3 group cursor-pointer"
             >
-              <span>Book a Wash</span>
+              <span>Réserver un lavage</span>
               <ArrowRight size={20} className="group-hover:translate-x-1.5 transition-transform duration-300 text-[#7dd3fc]" />
             </button>
           </motion.div>
@@ -138,7 +138,7 @@ export default function HomeView({
               <div className="flex justify-between items-center mb-6">
                 <div className="flex items-center gap-2">
                   <Sparkles className="text-[#7dd3fc]" size={18} />
-                  <h3 className="text-lg font-bold text-[#e0e8f0] uppercase tracking-wider">CMS Content Editor</h3>
+                  <h3 className="text-lg font-bold text-[#e0e8f0] uppercase tracking-wider">Éditeur de contenu CMS</h3>
                 </div>
                 <button
                   id="btn-close-cms-modal"
@@ -151,37 +151,37 @@ export default function HomeView({
 
               <form onSubmit={handleCmsSave} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold text-[#a0b4c4] uppercase tracking-wider mb-2">Hero Title</label>
+                  <label className="block text-xs font-semibold text-[#a0b4c4] uppercase tracking-wider mb-2">Titre Héro</label>
                   <input
                     type="text"
                     value={formTitle}
                     onChange={(e) => setFormTitle(e.target.value)}
                     className="w-full bg-[#0a0e1a]/70 border border-[#7dd3fc]/20 focus:border-[#7dd3fc] rounded-lg px-3 py-2 text-sm text-[#e0e8f0] outline-none"
-                    placeholder="E.g. GLACIER WASH"
+                    placeholder="Ex: LAVAGE GLACIER"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-[#a0b4c4] uppercase tracking-wider mb-2">Hero Subtitle</label>
+                  <label className="block text-xs font-semibold text-[#a0b4c4] uppercase tracking-wider mb-2">Sous-titre Héro</label>
                   <textarea
                     value={formSubtitle}
                     onChange={(e) => setFormSubtitle(e.target.value)}
                     rows={3}
                     className="w-full bg-[#0a0e1a]/70 border border-[#7dd3fc]/20 focus:border-[#7dd3fc] rounded-lg px-3 py-2 text-sm text-[#e0e8f0] outline-none"
-                    placeholder="E.g. Precision deep washing with molecular coating."
+                    placeholder="Ex: Nettoyage précis et revêtement moléculaire."
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-[#a0b4c4] uppercase tracking-wider mb-2">Promo Card Description</label>
+                  <label className="block text-xs font-semibold text-[#a0b4c4] uppercase tracking-wider mb-2">Description de la Carte Promo</label>
                   <textarea
                     value={formPromo}
                     onChange={(e) => setFormPromo(e.target.value)}
                     rows={3}
                     className="w-full bg-[#0a0e1a]/70 border border-[#7dd3fc]/20 focus:border-[#7dd3fc] rounded-lg px-3 py-2 text-sm text-[#e0e8f0] outline-none"
-                    placeholder="E.g. Get 20% discount on complete detailing packages."
+                    placeholder="Ex: Profitez de 20% de réduction sur les forfaits complets."
                     required
                   />
                 </div>
@@ -192,13 +192,13 @@ export default function HomeView({
                     onClick={() => setIsEditingCms(false)}
                     className="px-4 py-2 text-xs font-semibold text-[#a0b4c4] hover:text-[#e0e8f0] transition-colors cursor-pointer"
                   >
-                    Cancel
+                    Annuler
                   </button>
                   <button
                     type="submit"
                     className="px-4 py-2 text-xs font-semibold bg-[#7dd3fc]/15 text-[#7dd3fc] border border-[#7dd3fc]/30 hover:bg-[#7dd3fc]/25 rounded-full transition-all cursor-pointer"
                   >
-                    Save Changes
+                    Enregistrer les modifications
                   </button>
                 </div>
               </form>
@@ -211,7 +211,7 @@ export default function HomeView({
       <section id="promotions-section" className="py-24 px-6 max-w-6xl mx-auto relative z-20">
         <h2 className="font-sans text-3xl font-semibold text-[#e0e8f0] mb-12 text-center flex items-center justify-center gap-3">
           <Tag className="text-[#7dd3fc]" size={28} />
-          <span>Exclusive Offers</span>
+          <span>Offres Exclusives</span>
         </h2>
 
         <div className="grid gap-8">
@@ -237,7 +237,7 @@ export default function HomeView({
                       {promo.subtitle}
                     </span>
                     <span className="bg-[#7dd3fc]/10 text-[#7dd3fc] border border-[#7dd3fc]/20 text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider">
-                      {promo.discountPercent}% Off
+                      -{promo.discountPercent}%
                     </span>
                   </div>
                   
@@ -258,13 +258,13 @@ export default function HomeView({
                         <button
                           onClick={() => handleCopyCode(promo.promoCode)}
                           className="text-[#a0b4c4] hover:text-[#7dd3fc] transition-colors p-1 cursor-pointer"
-                          title="Copy promo code"
+                          title="Copier le code"
                         >
                           {copiedCode === promo.promoCode ? <Check size={16} className="text-green-400" /> : <Copy size={16} />}
                         </button>
                       </div>
                       <span className="text-center text-xs text-green-400 font-semibold flex items-center justify-center gap-1">
-                        <Check size={12} /> Claimed & Applied to Booking!
+                        <Check size={12} /> Réclamé & Appliqué !
                       </span>
                     </div>
                   ) : (
@@ -273,7 +273,7 @@ export default function HomeView({
                       onClick={() => claimPromo(promo.id)}
                       className="whitespace-nowrap px-8 py-3 rounded-full bg-[#7dd3fc]/10 text-[#7dd3fc] border border-[#7dd3fc]/20 hover:bg-[#7dd3fc]/20 hover:border-[#7dd3fc]/40 active:scale-95 transition-all font-medium cursor-pointer"
                     >
-                      Claim Offer
+                      Profiter de l'offre
                     </button>
                   )}
                 </div>

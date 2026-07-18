@@ -39,7 +39,7 @@ export default function BookView({
   activePromotions, 
   createBooking 
 }: BookViewProps) {
-  // Steps: 0 = Vehicle, 1 = Package, 2 = Date & Time, 3 = Add-ons, 4 = Summary
+  // Steps: 0 = Véhicule, 1 = Forfait, 2 = Planification, 3 = Options, 4 = Confirmation
   const [step, setStep] = useState(0);
 
   // Form selections
@@ -88,7 +88,8 @@ export default function BookView({
   // Generate next 7 days visual calendar
   const getNext7Days = () => {
     const days = [];
-    const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const weekdays = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
+    const months = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sept', 'Oct', 'Nov', 'Déc'];
     // Start from the current day 2026-07-18
     const baseDate = new Date('2026-07-18T11:15:10-07:00');
     
@@ -103,7 +104,7 @@ export default function BookView({
         formatted: `${year}-${month}-${date}`,
         dayName: weekdays[futureDate.getDay()],
         dayNum: futureDate.getDate(),
-        monthName: futureDate.toLocaleString('default', { month: 'short' }),
+        monthName: months[futureDate.getMonth()],
         isToday: i === 0
       });
     }
@@ -165,7 +166,7 @@ export default function BookView({
         percent: 25
       });
     } else {
-      setPromoError('Invalid coupon code. Try GLACIER_PREMIUM_20');
+      setPromoError('Code coupon invalide. Essayez GLACIER_PREMIUM_20');
       setAppliedDiscount(null);
     }
   };
@@ -186,7 +187,7 @@ export default function BookView({
     if (!selectedVeh || !selectedPkg || !selectedDate || !selectedTime) return;
 
     // Assemble dynamic add-on names for features if any
-    const finalPkgName = selectedPkg.name + (selectedAddOns.length > 0 ? ' (with Add-ons)' : '');
+    const finalPkgName = selectedPkg.name + (selectedAddOns.length > 0 ? ' (avec Options)' : '');
 
     createBooking({
       packageId: selectedPkg.id,
@@ -204,14 +205,14 @@ export default function BookView({
       <div className="mb-10 text-center md:text-left">
         <h2 className="font-sans text-3xl font-bold text-[#e0e8f0] flex items-center justify-center md:justify-start gap-2">
           <Sparkles className="text-[#7dd3fc]" />
-          <span>Book Your Glacier Treatment</span>
+          <span>Réservez Votre Traitement Glacier</span>
         </h2>
-        <p className="text-[#a0b4c4] text-sm mt-2">Precision wash booking simulator with real-time slot selection and pricing</p>
+        <p className="text-[#a0b4c4] text-sm mt-2">Simulateur de réservation avec sélection de créneaux et tarifs en temps réel</p>
       </div>
 
       {/* Progress Stepper bar */}
       <div className="grid grid-cols-5 gap-2 mb-8 select-none">
-        {['Vehicle', 'Package', 'Schedule', 'Add-ons', 'Confirm'].map((lbl, idx) => (
+        {['Véhicule', 'Forfait', 'Planning', 'Options', 'Confirmation'].map((lbl, idx) => (
           <button
             key={lbl}
             id={`step-indicator-${idx}`}
@@ -251,20 +252,20 @@ export default function BookView({
                 <div className="flex justify-between items-center mb-6">
                   <h3 className="text-lg font-bold text-[#e0e8f0] uppercase tracking-wider flex items-center gap-2">
                     <Car size={18} className="text-[#7dd3fc]" />
-                    Select Your Vehicle
+                    Sélectionnez Votre Véhicule
                   </h3>
                   <button
                     id="btn-trigger-add-vehicle"
                     onClick={() => setShowAddVehicleForm(true)}
                     className="flex items-center gap-1 bg-[#7dd3fc]/15 hover:bg-[#7dd3fc]/25 border border-[#7dd3fc]/30 text-[#7dd3fc] text-xs font-semibold px-3 py-1.5 rounded-full transition-all cursor-pointer"
                   >
-                    <Plus size={14} /> Add Vehicle
+                    <Plus size={14} /> Ajouter un Véhicule
                   </button>
                 </div>
 
                 {vehicles.length === 0 ? (
                   <div className="text-center py-10">
-                    <p className="text-[#a0b4c4] text-sm">No vehicles registered yet. Register your vehicle to continue.</p>
+                    <p className="text-[#a0b4c4] text-sm">Aucun véhicule enregistré. Enregistrez votre véhicule pour continuer.</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -317,16 +318,16 @@ export default function BookView({
                         className="glass-elevated p-6 w-full max-w-md rounded-2xl border border-[#7dd3fc]/20"
                       >
                         <h4 className="text-[#e0e8f0] font-bold text-lg mb-4 flex items-center gap-2">
-                          <Car size={18} className="text-[#7dd3fc]" /> Register New Vehicle
+                          <Car size={18} className="text-[#7dd3fc]" /> Nouvel Enregistrement
                         </h4>
                         
                         <form onSubmit={handleAddVehicleSubmit} className="space-y-4">
                           <div className="grid grid-cols-2 gap-4">
                             <div>
-                              <label className="block text-xs font-semibold text-[#a0b4c4] uppercase tracking-wider mb-1.5">Make</label>
+                              <label className="block text-xs font-semibold text-[#a0b4c4] uppercase tracking-wider mb-1.5">Marque</label>
                               <input
                                 type="text"
-                                placeholder="e.g. Audi"
+                                placeholder="ex: Audi"
                                 value={newMake}
                                 onChange={(e) => setNewMake(e.target.value)}
                                 className="w-full bg-[#0a0e1a]/80 border border-[#7dd3fc]/20 focus:border-[#7dd3fc] rounded-lg px-3 py-2 text-sm text-[#e0e8f0] outline-none"
@@ -334,10 +335,10 @@ export default function BookView({
                               />
                             </div>
                             <div>
-                              <label className="block text-xs font-semibold text-[#a0b4c4] uppercase tracking-wider mb-1.5">Model</label>
+                              <label className="block text-xs font-semibold text-[#a0b4c4] uppercase tracking-wider mb-1.5">Modèle</label>
                               <input
                                 type="text"
-                                placeholder="e.g. RS6"
+                                placeholder="ex: RS6"
                                 value={newModel}
                                 onChange={(e) => setNewModel(e.target.value)}
                                 className="w-full bg-[#0a0e1a]/80 border border-[#7dd3fc]/20 focus:border-[#7dd3fc] rounded-lg px-3 py-2 text-sm text-[#e0e8f0] outline-none"
@@ -347,10 +348,10 @@ export default function BookView({
                           </div>
 
                           <div>
-                            <label className="block text-xs font-semibold text-[#a0b4c4] uppercase tracking-wider mb-1.5">License Plate</label>
+                            <label className="block text-xs font-semibold text-[#a0b4c4] uppercase tracking-wider mb-1.5">Plaque d'immatriculation</label>
                             <input
                               type="text"
-                              placeholder="e.g. EX-789-PT"
+                              placeholder="ex: EX-789-PT"
                               value={newPlate}
                               onChange={(e) => setNewPlate(e.target.value)}
                               className="w-full bg-[#0a0e1a]/80 border border-[#7dd3fc]/20 focus:border-[#7dd3fc] rounded-lg px-3 py-2 text-sm text-[#e0e8f0] outline-none font-mono uppercase"
@@ -359,7 +360,7 @@ export default function BookView({
                           </div>
 
                           <div>
-                            <label className="block text-xs font-semibold text-[#a0b4c4] uppercase tracking-wider mb-1.5">Body Style</label>
+                            <label className="block text-xs font-semibold text-[#a0b4c4] uppercase tracking-wider mb-1.5">Style de carrosserie</label>
                             <div className="grid grid-cols-4 gap-2">
                               {(['sedan', 'suv', 'truck', 'coupe'] as VehicleType[]).map((t) => (
                                 <button
@@ -384,13 +385,13 @@ export default function BookView({
                               onClick={() => setShowAddVehicleForm(false)}
                               className="px-4 py-2 text-xs font-semibold text-[#a0b4c4] hover:text-white cursor-pointer"
                             >
-                              Cancel
+                              Annuler
                             </button>
                             <button
                               type="submit"
                               className="px-5 py-2 text-xs font-bold bg-[#7dd3fc]/15 text-[#7dd3fc] border border-[#7dd3fc]/30 hover:bg-[#7dd3fc]/25 rounded-full cursor-pointer transition-all"
                             >
-                              Add Vehicle
+                              Ajouter
                             </button>
                           </div>
                         </form>
@@ -413,7 +414,7 @@ export default function BookView({
                 <div className="glass-panel p-4 rounded-xl flex items-center justify-between">
                   <h3 className="text-base font-bold text-[#e0e8f0] uppercase tracking-wider flex items-center gap-2">
                     <ListTodo size={18} className="text-[#7dd3fc]" />
-                    Choose Your Level of Treatment
+                    Choisissez Votre Niveau de Traitement
                   </h3>
                 </div>
                 
@@ -461,8 +462,8 @@ export default function BookView({
                           </div>
 
                           <div className="mt-4 pt-3 border-t border-[#7dd3fc]/5 flex items-center justify-between text-xs text-[#a0b4c4]">
-                            <span className="flex items-center gap-1"><Clock size={12} /> {pkg.duration} mins treatment</span>
-                            {isSelected && <span className="text-[#7dd3fc] font-bold flex items-center gap-1 text-xs">Selected <CheckCircle2 size={12} /></span>}
+                            <span className="flex items-center gap-1"><Clock size={12} /> {pkg.duration} mins de soin</span>
+                            {isSelected && <span className="text-[#7dd3fc] font-bold flex items-center gap-1 text-xs">Sélectionné <CheckCircle2 size={12} /></span>}
                           </div>
                         </div>
                       </div>
@@ -482,12 +483,12 @@ export default function BookView({
                 className="glass-panel p-6 rounded-2xl space-y-6"
               >
                 <h3 className="text-lg font-bold text-[#e0e8f0] uppercase tracking-wider flex items-center gap-2">
-                  <Calendar size={18} className="text-[#7dd3fc]" /> Choose Appointment Date & Time
+                  <Calendar size={18} className="text-[#7dd3fc]" /> Choisissez la Date et l'Heure
                 </h3>
 
                 {/* Dates visual carousel */}
                 <div>
-                  <label className="block text-xs font-semibold text-[#a0b4c4] uppercase tracking-wider mb-3">Available Dates</label>
+                  <label className="block text-xs font-semibold text-[#a0b4c4] uppercase tracking-wider mb-3">Dates Disponibles</label>
                   <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
                     {datesList.map((d) => {
                       const isSelected = selectedDate === d.formatted;
@@ -506,7 +507,7 @@ export default function BookView({
                           <span className="text-[10px] font-semibold uppercase">{d.dayName}</span>
                           <span className="text-base font-bold my-0.5">{d.dayNum}</span>
                           <span className="text-[9px] uppercase font-light">{d.monthName}</span>
-                          {d.isToday && <span className="text-[8px] font-bold text-amber-400 mt-1 uppercase">Today</span>}
+                          {d.isToday && <span className="text-[8px] font-bold text-amber-400 mt-1 uppercase">Auj.</span>}
                         </button>
                       );
                     })}
@@ -516,8 +517,8 @@ export default function BookView({
                 {/* Time Slots grid */}
                 <div>
                   <div className="flex justify-between items-center mb-3">
-                    <label className="block text-xs font-semibold text-[#a0b4c4] uppercase tracking-wider">Available Timeslots</label>
-                    <span className="text-[10px] text-green-400 font-semibold flex items-center gap-1">● Instant Booking</span>
+                    <label className="block text-xs font-semibold text-[#a0b4c4] uppercase tracking-wider">Créneaux Horaires</label>
+                    <span className="text-[10px] text-green-400 font-semibold flex items-center gap-1">● Réservation Instantanée</span>
                   </div>
                   
                   <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
@@ -557,7 +558,7 @@ export default function BookView({
                 className="glass-panel p-6 rounded-2xl space-y-6"
               >
                 <h3 className="text-lg font-bold text-[#e0e8f0] uppercase tracking-wider flex items-center gap-2">
-                  <Shield size={18} className="text-[#7dd3fc]" /> Premium Protective Upgrades
+                  <Shield size={18} className="text-[#7dd3fc]" /> Options de Protection Premium
                 </h3>
 
                 <div className="space-y-3">
@@ -601,13 +602,13 @@ export default function BookView({
                 className="glass-panel p-6 rounded-2xl space-y-6"
               >
                 <h3 className="text-lg font-bold text-[#e0e8f0] uppercase tracking-wider flex items-center gap-2">
-                  <CheckCircle2 size={18} className="text-[#7dd3fc]" /> Final Treatment Summary
+                  <CheckCircle2 size={18} className="text-[#7dd3fc]" /> Résumé Final du Traitement
                 </h3>
 
                 <div className="space-y-4 text-sm divide-y divide-[#7dd3fc]/10">
                   {/* Vehicle details summary */}
                   <div className="py-2 flex justify-between items-center">
-                    <span className="text-[#a0b4c4] font-light flex items-center gap-1.5"><Car size={16} /> Selected Vehicle</span>
+                    <span className="text-[#a0b4c4] font-light flex items-center gap-1.5"><Car size={16} /> Véhicule Sélectionné</span>
                     <span className="font-semibold text-[#e0e8f0]">
                       {vehicles.find(v => v.id === selectedVehicleId)?.make} {vehicles.find(v => v.id === selectedVehicleId)?.model}
                       <span className="text-[10px] font-mono bg-[#0a0e1a] text-[#7dd3fc] px-1.5 py-0.5 border border-[#7dd3fc]/20 rounded ml-2 uppercase">
@@ -618,20 +619,20 @@ export default function BookView({
 
                   {/* Package Summary */}
                   <div className="pt-4 pb-2 flex justify-between items-center">
-                    <span className="text-[#a0b4c4] font-light flex items-center gap-1.5"><Sparkles size={16} /> Package</span>
+                    <span className="text-[#a0b4c4] font-light flex items-center gap-1.5"><Sparkles size={16} /> Forfait</span>
                     <span className="font-semibold text-[#e0e8f0]">{selectedPkg.name}</span>
                   </div>
 
                   {/* Date & Time Summary */}
                   <div className="pt-4 pb-2 flex justify-between items-center">
-                    <span className="text-[#a0b4c4] font-light flex items-center gap-1.5"><Calendar size={16} /> Appointment Slot</span>
-                    <span className="font-mono text-[#e0e8f0]">{selectedDate} at <span className="text-[#7dd3fc] font-bold">{selectedTime || 'Select Time'}</span></span>
+                    <span className="text-[#a0b4c4] font-light flex items-center gap-1.5"><Calendar size={16} /> Créneau</span>
+                    <span className="font-mono text-[#e0e8f0]">{selectedDate} à <span className="text-[#7dd3fc] font-bold">{selectedTime || 'Sélectionnez l\'heure'}</span></span>
                   </div>
 
                   {/* Selected Add-ons summary */}
                   {selectedAddOns.length > 0 && (
                     <div className="pt-4 pb-2 space-y-2">
-                      <span className="text-[#a0b4c4] font-light block">Selected Protective Upgrades:</span>
+                      <span className="text-[#a0b4c4] font-light block">Options de Protection Sélectionnées :</span>
                       <div className="space-y-1.5 pl-4">
                         {ADD_ONS.filter(a => selectedAddOns.includes(a.id)).map(a => (
                           <div key={a.id} className="flex justify-between text-xs">
@@ -645,11 +646,11 @@ export default function BookView({
 
                   {/* Coupon Promo section inside step */}
                   <div className="pt-4 pb-2 flex flex-col gap-2">
-                    <span className="text-[#a0b4c4] font-light">Promotional Discount Coupon:</span>
+                    <span className="text-[#a0b4c4] font-light">Coupon de Réduction Promotionnel :</span>
                     <div className="flex gap-2">
                       <input
                         type="text"
-                        placeholder="E.g. GLACIER_PREMIUM_20"
+                        placeholder="Ex: GLACIER_PREMIUM_20"
                         value={promoCode}
                         onChange={(e) => setPromoCode(e.target.value)}
                         className="flex-1 bg-[#0a0e1a]/80 border border-[#7dd3fc]/20 focus:border-[#7dd3fc] rounded-lg px-3 py-1.5 text-xs text-[#e0e8f0] outline-none font-mono uppercase"
@@ -659,13 +660,13 @@ export default function BookView({
                         onClick={handleApplyPromoCode}
                         className="px-4 py-1.5 text-xs font-semibold bg-[#7dd3fc]/15 text-[#7dd3fc] border border-[#7dd3fc]/30 hover:bg-[#7dd3fc]/25 rounded-lg transition-all cursor-pointer"
                       >
-                        Apply
+                        Appliquer
                       </button>
                     </div>
                     {promoError && <p className="text-xs text-red-400 mt-1">{promoError}</p>}
                     {appliedDiscount && (
                       <p className="text-xs text-green-400 font-semibold flex items-center gap-1 mt-1">
-                        ✓ Discount Code Applied: <span className="font-mono">{appliedDiscount.code}</span> (-{appliedDiscount.percent}% discount)
+                        ✓ Code Appliqué : <span className="font-mono">{appliedDiscount.code}</span> (-{appliedDiscount.percent}% de remise)
                       </p>
                     )}
                   </div>
@@ -686,7 +687,7 @@ export default function BookView({
                   : 'bg-transparent border-[#7dd3fc]/20 text-[#a0b4c4] hover:text-white hover:border-[#7dd3fc]/40'
               }`}
             >
-              <ChevronLeft size={16} /> Back
+              <ChevronLeft size={16} /> Retour
             </button>
 
             {step < 4 ? (
@@ -704,7 +705,7 @@ export default function BookView({
                     : 'bg-[#7dd3fc]/15 text-[#7dd3fc] border border-[#7dd3fc]/30 hover:bg-[#7dd3fc]/25'
                 }`}
               >
-                Next <ChevronRight size={16} />
+                Suivant <ChevronRight size={16} />
               </button>
             ) : (
               <button
@@ -712,7 +713,7 @@ export default function BookView({
                 onClick={handleConfirmBooking}
                 className="flex items-center gap-1.5 py-3 px-8 rounded-full text-sm font-bold bg-[#7dd3fc]/20 hover:bg-[#7dd3fc]/30 border border-[#7dd3fc]/50 text-[#7dd3fc] transition-all hover:shadow-[0_0_25px_rgba(125,211,252,0.25)] cursor-pointer"
               >
-                Confirm Treatment Booking <Check size={16} />
+                Confirmer la Réservation <Check size={16} />
               </button>
             )}
           </div>
@@ -722,40 +723,40 @@ export default function BookView({
         <div className="lg:col-span-1">
           <div className="glass-panel p-6 rounded-2xl sticky top-24 space-y-6">
             <h3 className="text-sm font-bold text-[#e0e8f0] uppercase tracking-widest border-b border-[#7dd3fc]/10 pb-3 flex items-center gap-2">
-              <Tag size={16} className="text-[#7dd3fc]" /> Live Invoice Detail
+              <Tag size={16} className="text-[#7dd3fc]" /> Détails de la Facture
             </h3>
 
             {/* Calculations layout */}
             <div className="space-y-3.5 text-xs text-[#a0b4c4]">
               <div className="flex justify-between items-center">
-                <span className="font-light">Treatment Wash:</span>
+                <span className="font-light">Type de Lavage:</span>
                 <span className="text-[#e0e8f0] font-medium">{selectedPkg?.name || '---'}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="font-light">Base Price:</span>
+                <span className="font-light">Prix de Base:</span>
                 <span className="text-[#e0e8f0] font-mono font-bold">{selectedPkg ? `${basePrice} €` : '0 €'}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="font-light">Protective Upgrades:</span>
+                <span className="font-light">Options Premium:</span>
                 <span className="text-[#e0e8f0] font-mono font-bold">+{addonsTotal} €</span>
               </div>
               
               <div className="border-t border-[#7dd3fc]/10 pt-3 flex justify-between items-center text-sm font-semibold">
-                <span className="text-[#e0e8f0]">Subtotal:</span>
+                <span className="text-[#e0e8f0]">Sous-total:</span>
                 <span className="text-[#e0e8f0] font-mono font-bold">{subtotal} €</span>
               </div>
 
               {appliedDiscount && (
                 <div className="flex justify-between items-center text-green-400 font-semibold bg-green-500/5 p-2 rounded border border-green-500/10">
-                  <span>Coupon ({appliedDiscount.code}):</span>
+                  <span>Remise ({appliedDiscount.code}):</span>
                   <span className="font-mono font-bold">-{discountAmount} € (-{appliedDiscount.percent}%)</span>
                 </div>
               )}
 
               <div className="border-t border-[#7dd3fc]/20 pt-4 flex justify-between items-end text-[#e0e8f0]">
                 <div>
-                  <span className="text-xs font-semibold uppercase tracking-wider block">Total Due:</span>
-                  <span className="text-[10px] text-[#a0b4c4] font-light">Taxes and fees included</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider block">Total à Payer:</span>
+                  <span className="text-[10px] text-[#a0b4c4] font-light">Taxes et frais inclus</span>
                 </div>
                 <span className="text-2xl font-bold font-mono text-[#7dd3fc] tracking-tight">{total} €</span>
               </div>
@@ -765,15 +766,15 @@ export default function BookView({
             <div className="bg-[#7dd3fc]/5 border border-[#7dd3fc]/15 rounded-xl p-3 text-xs flex items-center gap-3">
               <Sparkles className="text-[#7dd3fc] flex-shrink-0" size={16} />
               <div>
-                <p className="text-[#e0e8f0] font-semibold">Earn {Math.round(pointsToEarn)} Loyalty Points</p>
-                <p className="text-[#a0b4c4] text-[10px] font-light mt-0.5">Use points to claim free detailing packages in your profile.</p>
+                <p className="text-[#e0e8f0] font-semibold">Gagnez {Math.round(pointsToEarn)} Points</p>
+                <p className="text-[#a0b4c4] text-[10px] font-light mt-0.5">Utilisez vos points pour réclamer des lavages gratuits.</p>
               </div>
             </div>
 
             {/* Quick Helper guidelines */}
             <div className="text-[11px] text-[#a0b4c4] font-light bg-[#141c2e]/20 p-3 rounded-lg flex gap-1.5 items-start">
               <Info className="text-[#7dd3fc] flex-shrink-0 mt-0.5" size={13} />
-              <p className="leading-relaxed">Need to cancel or reschedule? No worries! You can cancel up to 2 hours before your appointment directly from your activity history without any penalty.</p>
+              <p className="leading-relaxed">Besoin d'annuler ou de reporter ? Aucun problème ! Vous pouvez annuler jusqu'à 2 heures avant le RDV sans pénalité.</p>
             </div>
           </div>
         </div>
